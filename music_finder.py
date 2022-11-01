@@ -1,23 +1,29 @@
-import requests
+"""
+A python application for finding the latest music from a list of artists
+"""
 import argparse
 import os
-import jinja2
+from datetime import datetime, timedelta
 
-from datetime import datetime
-from datetime import timedelta
-from jinja2 import Environment, FileSystemLoader
+import jinja2
+import requests
 from alive_progress import alive_bar
+from jinja2 import Environment, FileSystemLoader
 
 
 def __search_for_itunes_artist(artist_name: str) -> dict:
-    artist_response = requests.get(f'https://itunes.apple.com/search?term={artist_name.replace(" ", "+")}&entity=musicArtist')
+    url_query = f'term={artist_name.replace(" ", "+")}&entity=musicArtist'
+
+    artist_response = requests.get(
+        url=f"https://itunes.apple.com/search?{url_query}", timeout=10
+    )
 
     if len(artist_response.json()["results"]) > 1:
         for potential_artist in artist_response.json()["results"]:
             if potential_artist["artistName"] == artist_name:
                 return potential_artist
-    else:
-        return artist_response.json()["results"][0]
+
+    return artist_response.json()["results"][0]
 
 
 def __get_artists_music(artist: dict) -> []:
@@ -27,13 +33,17 @@ def __get_artists_music(artist: dict) -> []:
     else:
         artist_id = f'id={artist["artistId"]}'
 
-    song_response = requests.get(f'https://itunes.apple.com/lookup?{artist_id}&entity=song')
+    song_response = requests.get(
+        url=f"https://itunes.apple.com/lookup?{artist_id}&entity=song", timeout=10
+    )
     songs = song_response.json()["results"]
     del songs[0]
     music = music + songs
 
     # no previewUrl title := collectionName
-    album_response = requests.get(f'https://itunes.apple.com/lookup?{artist_id}&entity=album')
+    album_response = requests.get(
+        url=f"https://itunes.apple.com/lookup?{artist_id}&entity=album", timeout=10
+    )
     albums = album_response.json()["results"]
     del albums[0]
     music = music + albums
@@ -68,29 +78,53 @@ def __get_new_releases(music_list: [], days_ago: datetime) -> []:
                     preview = music["previewUrl"]
 
                 if music["collectionName"]:
-                    new_releases.append({"song": music["collectionName"], "preview": preview, "cover": music["artworkUrl100"] })
+                    new_releases.append(
+                        {
+                            "song": music["collectionName"],
+                            "preview": preview,
+                            "cover": music["artworkUrl100"],
+                        }
+                    )
                 else:
-                    new_releases.append({"song": music["track"], "preview": preview, "cover": music["artworkUrl100"]})
+                    new_releases.append(
+                        {
+                            "song": music["track"],
+                            "preview": preview,
+                            "cover": music["artworkUrl100"],
+                        }
+                    )
 
     filtered_releases = __filter_new_releases(new_releases=new_releases)
-    return [i for n, i in enumerate(filtered_releases)
-            if i not in filtered_releases[n + 1:]]
+    return [
+        i
+        for n, i in enumerate(filtered_releases)
+        if i not in filtered_releases[n + 1 :]
+    ]
 
 
 def __get_date(date: datetime) -> str:
-    return f'{date.day}/{date.month}/{date.year}'
+    return f"{date.day}/{date.month}/{date.year}"
 
 
 def __get_jinja_template(root: str, template_file: str) -> jinja2.environment.Template:
-    templates_dir = os.path.join(root, 'templates')
+    templates_dir = os.path.join(root, "templates")
     env = Environment(loader=FileSystemLoader(templates_dir))
     return env.get_template(template_file)
 
 
 def find_new_music(days: int, artists: []):
+    """
+    Find new music for a list of artists in the past given days
+    :param days: number of days to check for past releases
+    :type days: int
+    :param artists: a list of music artists
+    :type artists: list of str
+    :return: None
+    :rtype: None
+    """
     # open Jinja2 template
     root = os.path.dirname(os.path.abspath(__file__))
-    template = __get_jinja_template(root=root, template_file='index.html.j2')
+    template = __get_jinja_template(root=root, template_file="index.html.j2")
 
     # get date range
     days_ago = datetime.today() - timedelta(days=days)
@@ -100,7 +134,7 @@ def find_new_music(days: int, artists: []):
     all_artists = []
     song_count = 0
     print()
-    with alive_bar(len(artists), title=f'Finding new music since {date}') as bar:
+    with alive_bar(len(artists), title=f"Finding new music since {date}") as load_bar:
         for artist_name in artists:
             artist = __search_for_itunes_artist(artist_name=artist_name)
             if artist:
@@ -117,29 +151,24 @@ def find_new_music(days: int, artists: []):
                     }
                 )
             else:
-                print(f'{artist_name} not found')
+                print(f"{artist_name} not found")
 
-            bar()
+            load_bar()
 
     # Build HTML file from Jinja2 template
     print("exporting html...")
-    with open(f'{root}/app/index.html', 'w') as fh:
-        fh.write(template.render(artists=all_artists,
-                                 date=date,
-                                 song_count=song_count)
-                 )
+    with open(f"{root}/app/index.html", "w", encoding="UTF-8") as file:
+        file.write(
+            template.render(artists=all_artists, date=date, song_count=song_count)
+        )
 
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("--days",
-                            type=int,
-                            required=True)
-    arg_parser.add_argument('--artists',
-                            metavar='N',
-                            type=str,
-                            nargs='+',
-                            required=True)
+    arg_parser.add_argument("--days", type=int, required=True)
+    arg_parser.add_argument(
+        "--artists", metavar="N", type=str, nargs="+", required=True
+    )
     arguments = arg_parser.parse_args()
 
     find_new_music(days=arguments.days, artists=arguments.artists)
