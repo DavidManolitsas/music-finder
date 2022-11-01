@@ -1,6 +1,6 @@
 #!/usr/bin/env make
-
-ARTISTS ?= "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" "Lastlings" "RUFUS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" "Andrew Belle" "bülow" "grum" "EMBRZ" "Novo Amor" "Frank Ocean" "Flume" "Harry Styles" "Sam Smith"
+SRCS := $(wildcard *.py **/*.py)
+ARTISTS ?= "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" "Lastlings" "RÜFÜS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" "Andrew Belle" "bülow" "grum" "EMBRZ" "Novo Amor" "Frank Ocean" "Flume" "Harry Styles" "Sam Smith"
 DAYS ?= 90
 
 help:
@@ -20,6 +20,18 @@ help:
 
 run: main open
 
+check: style lint
+
+style:
+	# use black style, sort imports and requirements
+	isort $(SRCS)
+	black $(SRCS)
+	sort-requirements ./requirements.txt
+
+lint:
+	# check with flake8 and pylint
+	pylint --verbose $(SRCS)
+
 main:
 	@echo " __  __           _        _____ _           _           "
 	@echo "|  \/  |_   _ ___(_) ___  |  ___(_)_ __   __| | ___ _ __ "
@@ -33,6 +45,6 @@ main:
         --artists $(ARTISTS)
 
 open:
-	open output/index.html
+	open app/index.html
 
 #EOF
