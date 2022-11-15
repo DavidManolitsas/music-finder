@@ -61,9 +61,14 @@ body {
 .song {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    border: black;
-    border-width: 4px;
+    border: 4px black;
     padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.song img {
+    margin: 8px;
 }
 
 .song-cover {
@@ -73,16 +78,14 @@ body {
 }
 
 .song-info {
-    margin: 16px;
-    text-align: center;
+    margin: 8px;
 }
 
-.song audio {
-    display: block;
-    margin: auto;
+.song-info audio {
+    margin: 8px 0 0 0;
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 1020px) {
     h1 {
         text-align: center;
     }
