@@ -1,0 +1,21 @@
+name: Run Music Finder
+
+on:
+  push:
+    branches:
+      - main
+    pull-request:
+      branches:
+        - main
+  schedule:
+    - cron:  '0 0 1 */3 *'
+
+jobs:
+  run:
+    name: Run Music Finder
+    runs-on: unbuntu-latest
+    steps:
+      - name: checkoout repo
+        uses: actions/checkout@v3
+      - name: make run
+        run: make main

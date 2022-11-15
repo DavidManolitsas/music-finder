@@ -22,19 +22,19 @@
                 <p>The following is a list of music released from {{ date }} to today. There have been {{ song_count }} songs released in that period of time.</p>
             </div>
             <div class="song-grid">
-            {% for artist in artists %}
+           {% for artist in artists %}
                 {% for album in artist.new_releases %}
                 <div class="song">
                     <img class="song-cover" src="{{ album.cover }}" width="100" height="100" alt="{{ album.song }} cover image">
                     <div class="song-info">
                         <h2>{{ album.song }}</h2>
                         <h3>{{ artist.artist_name }}</h3>
+                        {% if album.preview %}
+                        <audio controls>
+                            <source src="{{ album.preview }}" type="audio/mpeg">
+                        </audio>
+                        {% endif %}
                     </div>
-                    {% if album.preview %}
-                    <audio controls>
-                        <source src="{{ album.preview }}" type="audio/mpeg">
-                    </audio>
-                    {% endif %}
                 </div>
                 {% endfor %}
             {% endfor %}
