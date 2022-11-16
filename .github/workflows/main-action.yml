@@ -5,7 +5,10 @@ on:
     branches:
       - main
   schedule:
-    - cron:  '0 0 17 */3 *'
+    - cron: '0 0 17 2 *'
+    - cron: '0 0 17 5 *'
+    - cron: '0 0 17 8 *'
+    - cron: '0 0 17 11 *'
 
   workflow_dispatch:
 
