@@ -21,10 +21,10 @@ jobs:
           make main
           deactivate
       - name: Upload artifact
-          uses: actions/upload-artifact@v2
-          with:
-            name: github-pages
-            path: ./app
+        uses: actions/upload-artifact@v2
+        with:
+          name: github-pages
+          path: ./app
       - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v1
