@@ -2,6 +2,8 @@
 
 A python application that finds the latest music releases from a range of music artists
 
+https://davidmanolitsas.github.io/music-finder/
+
 ## Setup Project
 
 Start virtual environment (venv) with:
