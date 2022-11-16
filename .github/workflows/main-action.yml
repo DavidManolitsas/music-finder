@@ -1,20 +1,19 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Run and Deploy Music Finder
 
 on:
-  # Runs on pushes targeting the default branch
   push:
+    branches:
+      - main
+  schedule:
+    - cron:  '0 0 17 */3 *'
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -41,7 +40,6 @@ jobs:
         with:
           name: github-pages
           path: ./app
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -55,8 +53,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
           path: './app'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+
+
