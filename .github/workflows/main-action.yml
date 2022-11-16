@@ -35,12 +35,8 @@ jobs:
           pip3 install -U -r requirements.txt
           make main
           deactivate
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: github-pages
-          path: ./app
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -57,5 +53,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-
