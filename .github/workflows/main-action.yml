@@ -5,10 +5,10 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 3 17 2 *'
-    - cron: '0 3 17 5 *'
-    - cron: '0 3 17 8 *'
-    - cron: '0 3 17 11 *'
+    - cron: '0 0 17 2 *'
+    - cron: '0 0 17 5 *'
+    - cron: '0 0 17 8 *'
+    - cron: '0 0 17 11 *'
 
   workflow_dispatch:
 
@@ -29,8 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          ref: main
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
