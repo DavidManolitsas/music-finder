@@ -73,36 +73,39 @@ body {
 
 .song-title {
     margin: 4px 0;
+    font-weight: 600;
 }
 
 .song-artist {
     margin: 4px 0;
-    color: #e53e44;
-}
-
-.audio-controls {
-    grid-column: 2;
-    justify-self: end;
-    align-self: center;
-    margin-right: 8px;
+    color: #fa233b;
 }
 
 .play-pause-btn {
     background-color: #f2f2f6;
     border: 0;
     border-radius: 8px;
-    color: #e53e44;
-    font-size: 16px;
+    color: #fa233b;
     cursor: pointer;
-    width: 120px;
+    width: 150px;
+    padding: 10px 0;
+    margin: 8px 0;
 }
 
 .play-pause-btn .fas {
-    margin: 4px 8px;
+    font-size: 12px;
+    position:relative;
+    margin: 0 8px;
+    bottom: 1px;
 }
 
 .play-pause-btn:focus {
     outline: 0;
+}
+
+.play-pause-txt {
+    font-size: 16px;
+    font-weight: 500;
 }
 
 footer {

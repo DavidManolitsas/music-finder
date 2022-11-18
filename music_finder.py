@@ -77,13 +77,13 @@ def __process_music_release(music: dict) -> dict:
         return {
             "song": music["collectionName"],
             "preview": preview,
-            "cover": str(music["artworkUrl100"]).replace("100x100", "300x300"),
+            "cover": str(music["artworkUrl100"]).replace("100x100", "600x600"),
         }
 
     return {
         "song": music["track"],
         "preview": preview,
-        "cover": str(music["artworkUrl100"]).replace("100x100", "300x300"),
+        "cover": str(music["artworkUrl100"]).replace("100x100", "600x600"),
     }
 
 
