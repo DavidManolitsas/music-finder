@@ -15,32 +15,32 @@
     <main>
         <header>
         <div class="content-wrap">
-           <h1>New Music Releases</h1>
+           <h1>Music Finder</h1>
+           <div class="info">
+               <p>{{ song_count }} songs released since {{ date }}</p>
+           </div>
         </div>
         </header>
         <div class="content-wrap">
-            <div class="info">
-                <p>The following is a list of music released from {{ date }} to today. There have been {{ song_count }} songs released in that period of time.</p>
-            </div>
             <div class="song-grid">
            {% for artist in artists %}
                 {% for album in artist.new_releases %}
-                <div class="song">
-                    <img class="song-cover" src="{{ album.cover }}" width="100" height="100" alt="{{ album.song }} cover image">
-                    <div class="song-details">
+                <div class="song-card">
+                    <img class="song-image" src="{{ album.cover }}" width="300" height="300" alt="{{ album.song }} cover image">
+                    <div class="card-container">
                         <div class="song-info">
-                          <h2>{{ album.song }}</h2>
-                          <h3>{{ artist.artist_name }}</h3>
+                            <p class="song-title"><b>{{ album.song }}</b></p>
+                            <p class="song-artist">{{ artist.artist_name }}</p>
                         </div>
                         {% if album.preview %}
                         <div class="audio-controls">
-                          <audio class="song-audio"
+                            <audio class="song-audio"
                                  src="{{ album.preview }}"
                                  type="audio/mpeg">
-                          </audio>
-                          <button class="play-pause-btn">
-                            <i class="fas fa-play"></i>
-                          </button>
+                            </audio>
+                            <button class="play-pause-btn">
+                                <i class="fas fa-play"></i><span class="play-pause-txt" >Play</span>
+                            </button>
                         </div>
                         {% endif %}
                     </div>
@@ -49,6 +49,9 @@
             {% endfor %}
             </div>
         </div>
+        <footer>
+            <p>Created by David Manolitsas</p>
+        </footer>
     </main>
     <script src="./js/script.js"></script>
 </body>
