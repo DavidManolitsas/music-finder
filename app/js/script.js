@@ -18,6 +18,7 @@ function playSong(audio, audioControl, playBtn) {
   audioControl.classList.add('play');
   playBtn.querySelector('i.fas').classList.remove('fa-play');
   playBtn.querySelector('i.fas').classList.add('fa-pause');
+  playBtn.querySelector('.play-pause-txt').innerText = "Pause";
 
   audio.play();
 }
@@ -27,6 +28,7 @@ function pauseSong(audio, audioControl, playBtn) {
   audioControl.classList.remove('play');
   playBtn.querySelector('i.fas').classList.add('fa-play');
   playBtn.querySelector('i.fas').classList.remove('fa-pause');
+  playBtn.querySelector('.play-pause-txt').innerText = "Play";
 
   audio.pause();
 }

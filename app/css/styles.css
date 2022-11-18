@@ -10,34 +10,20 @@ html {
 h1 {
     font-size: 45px;
     line-height: 1;
-    padding: 30px 0;
-}
-
-h2 {
-    font-size: 24px;
-}
-
-h1,
-h2 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
-    margin: 0;
-}
-
-h3 {
+    padding: 30px 0 0 0;
     margin: 0;
 }
 
 header {
-    background-color: #E6E8E6;
-    margin: 0 0 20px 0;
+    background-color: #f2f2f6;
+    margin: 0 0 32px 0;
+    text-align: center;
 }
 
 body {
-    font-family: "Montserrat", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 0;
     margin: 0;
-    color: #333333;
     font-size: 16px;
     line-height: 1.5;
 }
@@ -48,43 +34,50 @@ body {
 }
 
 .info {
-    text-align: center;
+    color: #8a8a8d;
+    padding: 0 0 24px 0;
+}
+
+.info p {
+    margin: 8px 0 0 0;
 }
 
 .song-grid {
     display: grid;
-    gap: 16px;
-    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 32px;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
-.song {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    border: 4px black;
-    padding: 16px;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-}
-
-.song img {
-    margin: 8px;
-}
-
-.song-cover {
-    display: block;
-    margin: auto;
+.song-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 16px;
+    width: 300px;
+    background-color: #ffffff;
 }
 
-.song-details {
-    display: grid;
+.song-image {
+    display: block;
+    border-radius: 16px 16px 0 0;
+}
+
+.card-container {
+    display: block;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
     grid-auto-columns: 3fr 1fr;
+    margin: 0;
+    padding: 8px;
 }
 
-.song-info {
-    margin: 8px;
-    text-align: left;
-    grid-column: 1;
+.song-title {
+    margin: 4px 0;
+}
+
+.song-artist {
+    margin: 4px 0;
+    color: #e53e44;
 }
 
 .audio-controls {
@@ -95,29 +88,41 @@ body {
 }
 
 .play-pause-btn {
-    background-color: #ffffff;
+    background-color: #f2f2f6;
     border: 0;
-    color: #333333;
-    font-size: 30px;
+    border-radius: 8px;
+    color: #e53e44;
+    font-size: 16px;
     cursor: pointer;
+    width: 120px;
+}
+
+.play-pause-btn .fas {
+    margin: 4px 8px;
 }
 
 .play-pause-btn:focus {
     outline: 0;
 }
 
-@media screen and (max-width: 1020px) {
-    h1 {
-        text-align: center;
-    }
+footer {
+    margin: 192px 0 64px 0;
+}
 
+footer p {
+    opacity: 50%;
+    text-align: center;
+    color: #8a8a8d;
+}
+
+@media screen and (max-width: 1040px) {
     .song-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 320px) {
-    .song audio {
-        visibility:hidden;
+@media screen and (max-width: 700px) {
+    .song-grid {
+        grid-template-columns: 1fr;
     }
 }
