@@ -38,7 +38,7 @@ def __get_artists_music(artist: dict) -> []:
     )
     songs = song_response.json()["results"]
     del songs[0]
-    music = music + songs
+    music.extend(songs)
 
     # no previewUrl title := collectionName
     album_response = requests.get(
@@ -46,12 +46,13 @@ def __get_artists_music(artist: dict) -> []:
     )
     albums = album_response.json()["results"]
     del albums[0]
-    music = music + albums
+    music.extend(albums)
 
     return music
 
 
 def __filter_new_releases(new_releases: []) -> []:
+    # filter duplicate songs to prioritise songs with music previews
     filtered_releases = []
 
     for new_release_1 in new_releases:
@@ -67,32 +68,32 @@ def __filter_new_releases(new_releases: []) -> []:
     return filtered_releases
 
 
-def __get_new_releases(music_list: [], days_ago: datetime) -> []:
+def __process_music_release(music: dict) -> dict:
+    preview = None
+    if "previewUrl" in music:
+        preview = music["previewUrl"]
+
+    if music["collectionName"]:
+        return {
+            "song": music["collectionName"],
+            "preview": preview,
+            "cover": str(music["artworkUrl100"]).replace("100x100", "300x300"),
+        }
+
+    return {
+        "song": music["track"],
+        "preview": preview,
+        "cover": str(music["artworkUrl100"]).replace("100x100", "300x300"),
+    }
+
+
+def __get_new_releases(music_list: [], start_date: datetime) -> []:
     new_releases = []
     for music in music_list:
         if "releaseDate" in music:
             release_date = datetime.strptime(music["releaseDate"], "%Y-%m-%dT%H:%M:%SZ")
-            if days_ago < release_date < (datetime.today() + timedelta(days=365)):
-                preview = None
-                if "previewUrl" in music:
-                    preview = music["previewUrl"]
-
-                if music["collectionName"]:
-                    new_releases.append(
-                        {
-                            "song": music["collectionName"],
-                            "preview": preview,
-                            "cover": music["artworkUrl100"],
-                        }
-                    )
-                else:
-                    new_releases.append(
-                        {
-                            "song": music["track"],
-                            "preview": preview,
-                            "cover": music["artworkUrl100"],
-                        }
-                    )
+            if start_date < release_date < (datetime.today() + timedelta(days=365)):
+                new_releases.append(__process_music_release(music=music))
 
     filtered_releases = __filter_new_releases(new_releases=new_releases)
     return [
@@ -102,7 +103,7 @@ def __get_new_releases(music_list: [], days_ago: datetime) -> []:
     ]
 
 
-def __get_date(date: datetime) -> str:
+def __format_date(date: datetime) -> str:
     return f"{date.day}/{date.month}/{date.year}"
 
 
@@ -116,30 +117,30 @@ def find_new_music(days: int, artists: []):
     """
     Find new music for a list of artists in the past given days
     :param days: number of days to check for past releases
-    :type days: int
     :param artists: a list of music artists
-    :type artists: list of str
     :return: None
-    :rtype: None
     """
     # open Jinja2 template
     root = os.path.dirname(os.path.abspath(__file__))
     template = __get_jinja_template(root=root, template_file="index.html.j2")
 
     # get date range
-    days_ago = datetime.today() - timedelta(days=days)
-    date = __get_date(date=days_ago)
+    start_date = datetime.today() - timedelta(days=days)
+    formatted_start_date = __format_date(date=start_date)
 
     # get new releases from artist list
     all_artists = []
     song_count = 0
-    print()
-    with alive_bar(len(artists), title=f"Finding new music since {date}") as load_bar:
+    with alive_bar(
+        len(artists), title=f"Finding new music since {formatted_start_date}"
+    ) as load_bar:
         for artist_name in artists:
             artist = __search_for_itunes_artist(artist_name=artist_name)
             if artist:
                 music = __get_artists_music(artist=artist)
-                new_releases = __get_new_releases(music_list=music, days_ago=days_ago)
+                new_releases = __get_new_releases(
+                    music_list=music, start_date=start_date
+                )
 
                 if new_releases:
                     song_count += len(new_releases)
@@ -156,10 +157,12 @@ def find_new_music(days: int, artists: []):
             load_bar()
 
     # Build HTML file from Jinja2 template
-    print("exporting html...")
+    print(f"Music Finder found {song_count} songs released since {formatted_start_date}")
     with open(f"{root}/app/index.html", "w", encoding="UTF-8") as file:
         file.write(
-            template.render(artists=all_artists, date=date, song_count=song_count)
+            template.render(
+                artists=all_artists, date=formatted_start_date, song_count=song_count
+            )
         )
 
 
