@@ -71,6 +71,14 @@ body {
     padding: 8px;
 }
 
+.song-info a {
+    text-decoration: none
+}
+
+.song-info a:hover {
+    font-weight: 600;
+}
+
 .song-title {
     margin: 4px 0;
     font-weight: 600;
