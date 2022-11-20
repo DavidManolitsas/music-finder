@@ -60,7 +60,6 @@ def __filter_new_releases(new_releases: []) -> []:
             if new_release_1["song"] == new_release_2["song"]:
                 if "preview" in new_release_2:
                     filtered_releases.append(new_release_2)
-
                 else:
                     filtered_releases.append(new_release_1)
                 break
@@ -141,6 +140,9 @@ def find_new_music(days: int, artists: []):
                 new_releases = __get_new_releases(
                     music_list=music, start_date=start_date
                 )
+                artist_link = None
+                if "artistLinkUrl" in artist:
+                    artist_link = artist["artistLinkUrl"]
 
                 if new_releases:
                     song_count += len(new_releases)
@@ -149,6 +151,7 @@ def find_new_music(days: int, artists: []):
                     {
                         "artist_name": artist["artistName"],
                         "new_releases": new_releases,
+                        "artist_link": artist_link,
                     }
                 )
             else:

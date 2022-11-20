@@ -16,22 +16,29 @@
     <main>
         <header>
         <div class="content-wrap">
-           <h1>Music Finder</h1>
+           <a href="./index.html"><h1>Music Finder</h1></a>
            <div class="info">
                <p>{{ song_count }} songs released since {{ date }}</p>
            </div>
         </div>
         </header>
         <div class="content-wrap">
-            <div class="song-grid">
-           {% for artist in artists %}
+            <input id="search-bar" type="text" placeholder="Search by Artist">
+            <div id="search-results">
+            </div>
+            <div class="song-grid" id="song-grid">
+            {% for artist in artists %}
                 {% for album in artist.new_releases %}
                 <div class="song-card">
                     <img class="song-image" src="{{ album.cover }}" width="300" height="300" alt="{{ album.song }} cover image">
                     <div class="card-container">
                         <div class="song-info">
                             <p class="song-title">{{ album.song }}</p>
+                            {% if artist.artist_link %}
+                            <a href="{{ artist.artist_link }}"><p class="song-artist">{{ artist.artist_name }}</p></a>
+                            {% else %}
                             <p class="song-artist">{{ artist.artist_name }}</p>
+                            {% endif %}
                         </div>
                         {% if album.preview %}
                         <div class="audio-controls">
