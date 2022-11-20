@@ -16,14 +16,17 @@
     <main>
         <header>
         <div class="content-wrap">
-           <h1>Music Finder</h1>
+           <a href="./index.html><h1>Music Finder</h1></a>
            <div class="info">
                <p>{{ song_count }} songs released since {{ date }}</p>
            </div>
         </div>
         </header>
         <div class="content-wrap">
-            <div class="song-grid">
+            <input id="search-bar" type="text" placeholder="Search by Artist">
+            <div id="search-results">
+            </div>
+            <div id="song-grid">
            {% for artist in artists %}
                 {% for album in artist.new_releases %}
                 <div class="song-card">
