@@ -72,15 +72,15 @@ def __process_music_release(music: dict) -> dict:
     if "previewUrl" in music:
         preview = music["previewUrl"]
 
-    if music["collectionName"]:
-        return {
-            "song": music["collectionName"],
-            "preview": preview,
-            "cover": str(music["artworkUrl100"]).replace("100x100", "600x600"),
-        }
+    if "trackCensoredName" in music:
+        song_name: str = music["trackCensoredName"]
+    else:
+        song_name: str = music["collectionName"]
 
     return {
-        "song": music["track"],
+        "song": song_name.replace(" - Single", "")
+                         .replace(" (Extended Mix)", "")
+                         .replace(" - EP", ""),
         "preview": preview,
         "cover": str(music["artworkUrl100"]).replace("100x100", "600x600"),
     }
