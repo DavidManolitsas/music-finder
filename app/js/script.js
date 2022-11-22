@@ -94,7 +94,6 @@ async function updateSongGrid(artist, newReleases) {
 }
 
 
-
 async function search(searchTerm) {
   let artist = await getItunesArtist(searchTerm)
 
@@ -158,6 +157,7 @@ function pauseSong(audio, audioControl, playBtn) {
 
   audio.pause();
 }
+
 
 // play music
 document.querySelectorAll('.audio-controls').forEach(audioControl => {
