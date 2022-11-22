@@ -4,8 +4,10 @@ baseUrl = "https://itunes.apple.com";
 
 
 async function queryItunesApi(url) {
+  // .concat("&callback=searchEvent")
   const response = await fetch(url, {
-    method: 'GET'
+    method: 'GET',
+    mode: 'cors'
   })
 
   let data = await response.json();
@@ -62,7 +64,7 @@ async function updateSongGrid(artist, newReleases) {
       songCardHtml += "    <div class=\"card-container\">\n"
       songCardHtml += "        <div class=\"song-info\">\n"
       songCardHtml += "            <p class=\"song-title\">" + release.collectionName + "</p>\n"
-      songCardHtml += "            <a href=\"" + release.artistLinkUrl + "\"><p class=\"song-artist\">" + release.artistName + "</p></a>\n"
+      songCardHtml += "            <a href=\"" + artist.artistLinkUrl + "\"><p class=\"song-artist\">" + release.artistName + "</p></a>\n"
       songCardHtml += "        </div>\n"
 
       if (release.previewUrl != null) {
@@ -91,6 +93,7 @@ async function updateSongGrid(artist, newReleases) {
   }
 }
 
+
 async function search(searchTerm) {
   let artist = await getItunesArtist(searchTerm)
 
@@ -116,24 +119,6 @@ async function search(searchTerm) {
     await updateSongGrid(artist, newReleases)
   }
 }
-
-
-// search bar event
-input.addEventListener("keyup", async function (event) {
-  if (event.key === "Enter") {
-    let searchTerm = input.value
-    if (searchTerm) {
-      await search(searchTerm)
-      input.value = ''
-    }
-  }
-});
-
-
-// play music
-document.querySelectorAll('.audio-controls').forEach(audioControl => {
-  setAudioControls(audioControl)
-})
 
 
 function setAudioControls(audioControl) {
@@ -172,3 +157,25 @@ function pauseSong(audio, audioControl, playBtn) {
 
   audio.pause();
 }
+
+
+// play music
+document.querySelectorAll('.audio-controls').forEach(audioControl => {
+  setAudioControls(audioControl)
+})
+
+
+// search bar event
+input.addEventListener("keyup", async function searchEvent(event) {
+  if (event.key === "Enter") {
+    let searchTerm = input.value
+    if (searchTerm) {
+      await search(searchTerm).catch(function() {
+        document.getElementById('search-results').innerHTML = "iTunes API call failed with search \"" + searchTerm + "\"";
+      });
+      input.value = ''
+    }
+  }
+});
+
+
