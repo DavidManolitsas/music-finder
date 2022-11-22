@@ -4,7 +4,6 @@ baseUrl = "https://itunes.apple.com";
 
 
 async function queryItunesApi(url) {
-  // .concat("&callback=searchEvent")
   const response = await fetch(url, {
     method: 'GET',
     mode: 'cors'
