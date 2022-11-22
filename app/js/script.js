@@ -4,7 +4,6 @@ baseUrl = "https://itunes.apple.com";
 
 
 async function queryItunesApi(url) {
-  // .concat("&callback=searchEvent")
   const response = await fetch(url, {
     method: 'GET',
     mode: 'cors'
@@ -59,11 +58,21 @@ async function updateSongGrid(artist, newReleases) {
       let songImageUrl = release.artworkUrl100
       songImageUrl = songImageUrl.replaceAll("100x100", "600x600")
 
+      let songName
+      if ("trackCensoredName" in release) {
+        songName = release.trackCensoredName
+      } else {
+        songName = release.collectionName
+      }
+
+      songName = songName.replace(" - Single", "").replace(" (Extended Mix)", "")
+
+
       songCardHtml += "<div class=\"song-card\">\n"
-      songCardHtml += "    <img class=\"song-image\" src=\"" + songImageUrl + "\" width=\"300\" height=\"300\" alt=\"" + release.collectionName + "cover image\">\n"
+      songCardHtml += "    <img class=\"song-image\" src=\"" + songImageUrl + "\" width=\"300\" height=\"300\" alt=\"" + songName + "cover image\">\n"
       songCardHtml += "    <div class=\"card-container\">\n"
       songCardHtml += "        <div class=\"song-info\">\n"
-      songCardHtml += "            <p class=\"song-title\">" + release.collectionName + "</p>\n"
+      songCardHtml += "            <p class=\"song-title\">" + songName + "</p>\n"
       songCardHtml += "            <a href=\"" + artist.artistLinkUrl + "\"><p class=\"song-artist\">" + release.artistName + "</p></a>\n"
       songCardHtml += "        </div>\n"
 
@@ -94,6 +103,26 @@ async function updateSongGrid(artist, newReleases) {
 }
 
 
+function filterSongs(releases) {
+  let filteredReleases = []
+
+  for (let newRelease1 in releases){
+    for (let newRelease2 in releases) {
+      if (newRelease1.song === newRelease2.song) {
+        if ("preview" in newRelease2) {
+          filteredReleases.push(newRelease2)
+        } else {
+          filteredReleases.push(newRelease1)
+        }
+        break
+      }
+    }
+  }
+
+  return filteredReleases
+}
+
+
 async function search(searchTerm) {
   let artist = await getItunesArtist(searchTerm)
 
@@ -116,6 +145,8 @@ async function search(searchTerm) {
       }
     }
 
+    // TODO: filter song releases to remove duplicates in search results
+    // let filteredReleases = filterSongs(newReleases)
     await updateSongGrid(artist, newReleases)
   }
 }
