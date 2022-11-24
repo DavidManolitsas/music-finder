@@ -109,6 +109,12 @@ body {
     color: #fa233b;
 }
 
+.track-count {
+    opacity: 75%;
+    color: #8a8a8d;
+    margin: 8px;
+}
+
 .play-pause-btn {
     background-color: #f2f2f6;
     border: 0;
