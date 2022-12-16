@@ -14,6 +14,12 @@ async function queryItunesApi(url) {
 }
 
 
+async function getRelevantItunesArtists(searchTerm) {
+  let url = baseUrl.concat("/search?term=").concat(searchTerm.replaceAll(" ", "+")).concat("&entity=musicArtist&limit=5")
+  return await queryItunesApi(url)
+}
+
+
 async function getItunesArtist(searchTerm) {
   let url = baseUrl.concat("/search?term=").concat(searchTerm.replaceAll(" ", "+")).concat("&entity=musicArtist")
   let artists = await queryItunesApi(url)
@@ -51,7 +57,7 @@ async function getArtistsSongs(artist) {
 }
 
 
-async function updateSongGrid(artist, newReleases) {
+async function setSongGrid(artist, newReleases) {
   if (newReleases.length > 0) {
     let songCardHtml = ""
     newReleases.forEach(release => {
@@ -66,7 +72,6 @@ async function updateSongGrid(artist, newReleases) {
       }
 
       songName = songName.replace(" - Single", "").replace(" (Extended Mix)", "")
-
 
       songCardHtml += "<div class=\"song-card\">\n"
       songCardHtml += "    <img class=\"song-image\" src=\"" + songImageUrl + "\" width=\"300\" height=\"300\" alt=\"" + songName + "cover image\">\n"
@@ -123,6 +128,31 @@ function filterSongs(releases) {
 }
 
 
+async function setSearchResults(searchTerm) {
+  let artists = await getRelevantItunesArtists(searchTerm)
+  const artistIds = []
+  artistListHtml = "<ul>\n"
+  for (const artist of artists) {
+    artistListHtml += "    <li id=\"" + artist.artistId + "\">" + artist.artistName + "</li>\n"
+    artistIds.push(artist.artistId.toString())
+  }
+  artistListHtml += "</ul>\n"
+  document.getElementById('search-results').innerHTML = artistListHtml
+
+  if (artistIds.length < 1) {
+    document.getElementById('search-results').innerHTML = "No results found for " + searchTerm
+  }
+
+  for (const id of artistIds) {
+    document.getElementById(id).addEventListener('click', event => {
+      search(id).catch(function() {
+        document.getElementById('search-results').innerHTML = "iTunes API call failed";
+      });
+    })
+  }
+}
+
+
 async function search(searchTerm) {
   let artist = await getItunesArtist(searchTerm)
 
@@ -147,7 +177,7 @@ async function search(searchTerm) {
 
     // TODO: filter song releases to remove duplicates in search results
     // let filteredReleases = filterSongs(newReleases)
-    await updateSongGrid(artist, newReleases)
+    await setSongGrid(artist, newReleases)
   }
 }
 
@@ -201,7 +231,7 @@ input.addEventListener("keyup", async function searchEvent(event) {
   if (event.key === "Enter") {
     let searchTerm = input.value
     if (searchTerm) {
-      await search(searchTerm).catch(function() {
+      await setSearchResults(searchTerm).catch(function() {
         document.getElementById('search-results').innerHTML = "iTunes API call failed with search \"" + searchTerm + "\"";
       });
       input.value = ''
