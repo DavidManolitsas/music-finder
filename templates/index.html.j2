@@ -40,6 +40,9 @@
                             <p class="song-artist">{{ artist.artist_name }}</p>
                             {% endif %}
                         </div>
+                        {% if album.track_count %}
+                        <p class="track-count">{{ album.track_count }} Songs</p>
+                        {% endif %}
                         {% if album.preview %}
                         <div class="audio-controls">
                             <audio class="song-audio"
