@@ -72,9 +72,24 @@ body {
 
 #search-results {
     text-align: center;
-    opacity: 50%;
     color: #8a8a8d;
     margin: 32px
+}
+
+#search-results ul {
+    padding: 0 0 0 20px;
+    margin: 0;
+    list-style: none;
+}
+
+#search-results li {
+    color: #8a8a8d;
+}
+
+#search-results li:hover {
+    font-weight: 600;
+    cursor: pointer;
+    color: #fa233b;
 }
 
 .song-card {
