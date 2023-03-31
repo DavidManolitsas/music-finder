@@ -35,7 +35,10 @@ or
 ```bash
 python3 music_finder.py \
     --days 31 \
-    --artists "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" "Lastlings" "RUFUS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" "Andrew Belle" "bülow" "grum" "EMBRZ" "Novo Amor" "Frank Ocean"
+    --artists "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" \
+    "Lastlings" "RUFUS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" \
+    "Andrew Belle" "bülow" "grum" "EMBRZ" "Novo Amor" "Frank Ocean" "Hozier" "CHRVCHES" \
+    "Spacey Jane" 
 ```
 
 ## Clean Up
