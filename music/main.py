@@ -13,4 +13,4 @@ if __name__ == "__main__":
     )
     arguments = arg_parser.parse_args()
 
-    find_new_music(days=arguments.days, artists=arguments.artists)
+    find_new_music(days=arguments.days, artist_names=arguments.artists)
