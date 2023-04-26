@@ -87,24 +87,26 @@ def find_new_music(days: int, artist_names: []):
     formatted_start_date = format_date(date=start_date)
 
     # get new releases from artist list
-    all_artists = []
+    artists = []
     song_count = 0
 
     for artist_name in artist_names:
         artist = get_artist_by_name(name=artist_name)
         if artist:
             music = get_music_by_artist(artist=artist)
-            new_releases = __filter_music_by_date(
-                music_list=music, start_date=start_date
-            )
-
             artist_link = artist.get("artistLinkUrl")
+
+            # get new releases by artist
+            new_releases = __filter_music_by_date(
+                music_list=music,
+                start_date=start_date
+            )
 
             if new_releases:
                 log.info(f"new music found from {artist_name}")
                 song_count += len(new_releases)
 
-            all_artists.append(
+            artists.append(
                 {
                     "artist_name": artist_name,
                     "new_releases": new_releases,
@@ -119,7 +121,7 @@ def find_new_music(days: int, artist_names: []):
     with open(f"app/index.html", "w", encoding="UTF-8") as file:
         file.write(
             template.render(
-                artists=all_artists,
+                artists=artists,
                 date=formatted_start_date,
                 song_count=song_count,
             )
