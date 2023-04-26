@@ -30,7 +30,7 @@
             {% for artist in artists %}
                 {% for album in artist.new_releases %}
                 <div class="song-card">
-                    <img class="song-image" src="{{ album.cover }}" width="300" height="300" alt="{{ album.song }} cover image">
+                  <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="300" height="300" alt="{{ album.song }} cover image"></a>
                     <div class="card-container">
                         <div class="song-info">
                             <p class="song-title">{{ album.song }}</p>

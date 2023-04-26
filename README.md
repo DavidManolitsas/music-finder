@@ -1,6 +1,6 @@
 # Music Finder
 
-A python application that finds the latest music releases from a range of music artists
+A python application that finds the latest search releases from a range of search artists
 
 https://davidmanolitsas.github.io/music-finder/
 
@@ -33,7 +33,7 @@ make run
 or
 
 ```bash
-python3 music_finder.py \
+python3 main.py \
     --days 31 \
     --artists "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" \
     "Lastlings" "RUFUS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" \

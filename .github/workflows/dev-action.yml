@@ -2,9 +2,8 @@ name: Run Music Finder
 
 on:
   push:
-    branches:
-      - 'feature/**'
-      - develop
+    branches-ignore:
+      - main
 
 jobs:
   build:

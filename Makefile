@@ -24,8 +24,8 @@ check: style lint
 
 style:
 	# use black style, sort imports and requirements
-	isort $(SRCS)
-	black $(SRCS)
+	isort --line-length 79 --profile black ./music
+	black --line-length 79 ./music
 	sort-requirements ./requirements.txt
 
 lint:
@@ -40,7 +40,7 @@ main:
 	@echo "|_|  |_|\__ _|___/_|\___| |_|   |_|_| |_|\__ _|\___|_|   "
 	@echo "Created by David Manolitsas "
 	@echo
-	python3 music_finder.py \
+	python3 -m music.main \
         --days $(DAYS)  \
         --artists $(ARTISTS)
 
