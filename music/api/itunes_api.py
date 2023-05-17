@@ -5,8 +5,8 @@ def __send_request(url: str):
     return requests.get(url=url, timeout=20)
 
 
-def __filter_artist_details(response):
-    results = response.json()["results"]
+def __remove_artist_details(response):
+    results = response.json().get("results")
     del results[0]
     return results
 
@@ -25,11 +25,11 @@ def get_artist_by_name(name: str) -> dict:
     )
 
     if len(response.json()["results"]) > 1:
-        for artist in response.json()["results"]:
+        for artist in response.json().get("results"):
             if artist["artistName"] == name:
                 return artist
 
-    return response.json()["results"][0]
+    return response.json().get("results")[0]
 
 
 def get_music_by_artist(artist: dict) -> []:
@@ -50,12 +50,12 @@ def get_music_by_artist(artist: dict) -> []:
     song_response = __send_request(
         url=f"https://itunes.apple.com/lookup?{artist_id}&entity=song",
     )
-    music.extend(__filter_artist_details(response=song_response))
+    music.extend(__remove_artist_details(response=song_response))
 
     # get all albums by artist
     album_response = __send_request(
         url=f"https://itunes.apple.com/lookup?{artist_id}&entity=album",
     )
-    music.extend(__filter_artist_details(response=album_response))
+    music.extend(__remove_artist_details(response=album_response))
 
     return music

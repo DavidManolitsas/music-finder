@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 from music.util.date_util import format_date, get_start_date
-from music.util.itunes_api_util import get_artist_by_name, get_music_by_artist
+from music.api.itunes_api import get_artist_by_name, get_music_by_artist
 from music.util.log_util import get_logger
 from music.util.template_util import get_template
 
