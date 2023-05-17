@@ -10,7 +10,7 @@ def __send_request(url: str):
         response.raise_for_status()
         return response
     except requests.exceptions.HTTPError as error:
-        log.error(f"itunes api error - {url}: {error}")
+        log.error(f"iTunes API error {error}")
         return None
 
 
@@ -33,12 +33,13 @@ def get_artist_by_name(name: str) -> dict:
         url=f"https://itunes.apple.com/search?{url_query}"
     )
 
-    if len(response.json().get("results")) > 1:
-        for artist in response.json().get("results"):
-            if artist["artistName"] == name:
-                return artist
+    if response:
+        if len(response.json().get("results")) > 1:
+            for artist in response.json().get("results"):
+                if artist["artistName"] == name:
+                    return artist
 
-    return response.json().get("results")[0]
+        return response.json().get("results")[0]
 
 
 def get_music_by_artist(artist: dict) -> []:
