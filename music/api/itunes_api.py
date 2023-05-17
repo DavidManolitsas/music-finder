@@ -5,8 +5,13 @@ log = get_logger()
 
 
 def __send_request(url: str):
-    print(url)  # testing
-    return requests.get(url=url, timeout=20)
+    try:
+        response = requests.get(url=url, timeout=20)
+        response.raise_for_status()
+        return response
+    except requests.exceptions.HTTPError as error:
+        log.error(f"itunes api error - {url}: {error}")
+        return None
 
 
 def __remove_artist_details(response):
@@ -28,10 +33,7 @@ def get_artist_by_name(name: str) -> dict:
         url=f"https://itunes.apple.com/search?{url_query}"
     )
 
-    print(f"status: {response.status_code}")  # testing
-
     if len(response.json().get("results")) > 1:
-
         for artist in response.json().get("results"):
             if artist["artistName"] == name:
                 return artist
