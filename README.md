@@ -22,7 +22,7 @@ Install requirements:
 pip3 install -U -r requirements.txt
 ```
 
-## Run Project
+## Quick Start
 
 Run the project with:
 
@@ -33,13 +33,11 @@ make run
 or
 
 ```bash
-python3 main.py \
-    --days 31 \
-    --artists "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" \
-    "Lastlings" "RUFUS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" \
-    "Andrew Belle" "bülow" "grum" "EMBRZ" "Novo Amor" "Frank Ocean" "Hozier" "CHRVCHES" \
-    "Spacey Jane" 
+python3 -m music --days 31
 ```
+
+To run the project with custom artists, update the `music/resources/artists.yaml` file
+
 
 ## Clean Up
 

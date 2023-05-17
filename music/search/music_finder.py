@@ -1,9 +1,7 @@
 from datetime import datetime, timedelta
+
 from music.util.date_util import format_date, get_start_date
-from music.util.itunes_api_util import (
-    get_music_by_artist,
-    get_artist_by_name,
-)
+from music.util.itunes_api_util import get_artist_by_name, get_music_by_artist
 from music.util.log_util import get_logger
 from music.util.template_util import get_template
 
@@ -98,8 +96,7 @@ def find_new_music(days: int, artist_names: []):
 
             # get new releases by artist
             new_releases = __filter_music_by_date(
-                music_list=music,
-                start_date=start_date
+                music_list=music, start_date=start_date
             )
 
             if new_releases:
