@@ -60,14 +60,16 @@ def get_music_by_artist(artist: dict) -> []:
     song_response = __send_request(
         url=f"https://itunes.apple.com/lookup?{artist_id}&entity=song",
     )
-    songs = __remove_artist_details(response=song_response)
-    music.extend(songs)
+    if song_response:
+        songs = __remove_artist_details(response=song_response)
+        music.extend(songs)
 
     # get all albums by artist
     album_response = __send_request(
         url=f"https://itunes.apple.com/lookup?{artist_id}&entity=album",
     )
-    albums = __remove_artist_details(response=album_response)
-    music.extend(albums)
+    if album_response:
+        albums = __remove_artist_details(response=album_response)
+        music.extend(albums)
 
     return music
