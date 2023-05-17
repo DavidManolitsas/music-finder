@@ -1,7 +1,11 @@
 import requests
+from music.util.log_util import get_logger
+
+log = get_logger()
 
 
 def __send_request(url: str):
+    print(url)  # testing
     return requests.get(url=url, timeout=20)
 
 
@@ -24,7 +28,10 @@ def get_artist_by_name(name: str) -> dict:
         url=f"https://itunes.apple.com/search?{url_query}"
     )
 
-    if len(response.json()["results"]) > 1:
+    print(f"status: {response.status_code}")  # testing
+
+    if len(response.json().get("results")) > 1:
+
         for artist in response.json().get("results"):
             if artist["artistName"] == name:
                 return artist
@@ -50,12 +57,14 @@ def get_music_by_artist(artist: dict) -> []:
     song_response = __send_request(
         url=f"https://itunes.apple.com/lookup?{artist_id}&entity=song",
     )
-    music.extend(__remove_artist_details(response=song_response))
+    songs = __remove_artist_details(response=song_response)
+    music.extend(songs)
 
     # get all albums by artist
     album_response = __send_request(
         url=f"https://itunes.apple.com/lookup?{artist_id}&entity=album",
     )
-    music.extend(__remove_artist_details(response=album_response))
+    albums = __remove_artist_details(response=album_response)
+    music.extend(albums)
 
     return music
