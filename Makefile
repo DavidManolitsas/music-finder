@@ -18,7 +18,7 @@ help:
 	@echo "Deactivate venv with:"
 	@echo "    deactivate"
 
-run: main open
+all: check run open
 
 check: style lint
 
@@ -32,7 +32,7 @@ lint:
 	# check with flake8 and pylint
 	pylint --verbose $(SRCS)
 
-main:
+run:
 	@echo " __  __           _        _____ _           _           "
 	@echo "|  \/  |_   _ ___(_) ___  |  ___(_)_ __   __| | ___ _ __ "
 	@echo "| |\/| | | | / __| |/ __| | |_  | |  _ \ / _  |/ _ \  __|"
