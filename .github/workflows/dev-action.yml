@@ -20,7 +20,7 @@ jobs:
           python3 -m virtualenv venv
           source venv/bin/activate
           pip3 install -U -r requirements.txt
-          make main
+          make all
           deactivate
       - name: Upload artifact
         uses: actions/upload-artifact@v2
