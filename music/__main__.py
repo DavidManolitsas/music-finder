@@ -12,4 +12,4 @@ if __name__ == "__main__":
     arguments = arg_parser.parse_args()
 
     artists_yaml = read_yaml_to_dict("music/resources/artists.yaml")
-    find_new_music(days=arguments.days, artist_names=artists_yaml["artists"])
+    find_new_music(days=arguments.days, artists=artists_yaml["artists"])
