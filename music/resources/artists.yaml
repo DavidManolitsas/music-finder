@@ -1,29 +1,57 @@
 artists:
-  - "Above & Beyond"
-  - "Kasbo"
-  - "Yoste"
-  - "Lane 8"
-  - "ODESZA"
-  - "Emmit Fenn"
-  - "Shallou"
-  - "ZHU"
-  - "Lastlings"
-  - "RÜFÜS DU SOL"
-  - "Elderbrook"
-  - "Oh Wonder"
-  - "Joji"
-  - "Alex Lustig"
-  - "HONNE"
-  - "Jai Wolf"
-  - "Andrew Belle"
-  - "bülow"
-  - "grum"
-  - "EMBRZ"
-  - "Novo Amor"
-  - "Frank Ocean"
-  - "Flume"
-  - "Harry Styles"
-  - "Maribou State"
-  - "Hozier"
-  - "CHRVCHES"
-  - "Spacey Jane"
+  - id: 20318188
+    name: "Above & Beyond"
+  - id: 739932137
+    name: "Kasbo"
+  - id: 1076264033
+    name: "Yoste"
+  - id: 634763116
+    name: "Lane 8"
+  - id: 739033803
+    name: "ODESZA"
+  - id: 1084146246
+    name: "Emmit Fenn"
+  - id: 940109730
+    name: "Shallou"
+  - id: 261545033
+    name: "ZHU"
+  - id: 1019286463
+    name: "Lastlings"
+  - id: 799587823
+    name: "RÜFÜS DU SOL"
+  - id: 736829657
+    name: "Elderbrook"
+  - id: 951123601
+    name: "Oh Wonder"
+  - id: 1258279972
+    name: "Joji"
+  - id: 962022678
+    name: "Alex Lustig"
+  - id: 906366067
+    name: "HONNE"
+  - id: 896670451
+    name: "Jai Wolf"
+  - id: 291731793
+    name: "Andrew Belle"
+  - id: 1340513121
+    name: "bülow"
+  - id: 305693322
+    name: "grum"
+  - id: 1029980312
+    name: "EMBRZ"
+  - id: 763635303
+    name: "Novo Amor"
+  - id: 442122051
+    name: "Frank Ocean"
+  - id: 4275634
+    name: "Flume"
+  - id: 471260289
+    name: "Harry Styles"
+  - id: 439754171
+    name: "Maribou State"
+  - id: 342260741
+    name: "Hozier"
+  - id: 566867492
+    name: "CHRVCHES"
+  - id: 1274804750
+    name: "Spacey Jane"
