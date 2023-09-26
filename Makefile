@@ -1,6 +1,5 @@
 #!/usr/bin/env make
 SRCS := $(wildcard *.py **/*.py)
-ARTISTS ?= "Above & Beyond" "Kasbo" "Yoste" "Lane 8" "ODESZA" "Emmit Fenn" "Shallou" "ZHU" "Lastlings" "RÜFÜS DU SOL" "Elderbrook" "Oh Wonder" "Joji" "Alex Lustig" "HONNE" "Jai Wolf" "Andrew Belle" "bülow" "grum" "EMBRZ" "Novo Amor" "Frank Ocean" "Flume" "Harry Styles" "Sam Smith" "Hozier" "CHRVCHES" "Spacey Jane"
 DAYS ?= 31
 
 help:

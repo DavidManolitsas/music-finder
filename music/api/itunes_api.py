@@ -5,7 +5,7 @@ from music.util.log_util import get_logger
 log = get_logger()
 
 
-def __send_http_request(url: str):
+def send_http_request(url: str):
     try:
         response = requests.get(url=url, timeout=20)
         response.raise_for_status()
@@ -26,7 +26,7 @@ def get_music_by_artist(artist: dict) -> []:
     artist_id = artist.get("id")
 
     # get all songs by artist
-    song_response = __send_http_request(
+    song_response = send_http_request(
         url=f"https://itunes.apple.com/lookup?id={artist_id}&entity=song",
     )
 
@@ -34,7 +34,7 @@ def get_music_by_artist(artist: dict) -> []:
         music.extend(song_response.json().get("results"))
 
     # get all albums by artist
-    album_response = __send_http_request(
+    album_response = send_http_request(
         url=f"https://itunes.apple.com/lookup?id={artist_id}&entity=album",
     )
     if album_response:

@@ -46,3 +46,18 @@ Deactivate `venv` with:
 ```bash
 deactivate
 ```
+
+## Find Artist
+
+To find a music artist id by their name, use the python script:
+
+```bash
+python3 find_artist_id.py -a "Above & Beyond" -l 5
+```
+
+`-a` is the search term i.e. artist name and `-l` is the limit on the search results.
+Find out more information with:
+
+```bash
+python3 find_artist_id.py --help
+```
