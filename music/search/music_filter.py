@@ -45,6 +45,7 @@ def map_itunes_music_to_new_release(music: dict) -> dict:
     return {
         "song": song_name.replace(" - Single", "")
         .replace(" (Extended Mix)", "")
+        .replace(" [Extended Mix]", "")
         .replace(" - EP", ""),
         "preview": preview,
         "song_url": song_url,

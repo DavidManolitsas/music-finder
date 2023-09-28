@@ -1,3 +1,6 @@
+"""
+Script to find an artists iTunes ID from their artist name.
+"""
 import argparse
 
 from music.util.log_util import get_logger
@@ -27,4 +30,6 @@ response = send_http_request(url=f'https://itunes.apple.com/search'
 # iterate through artists
 if response:
     for artist in response.json().get("results"):
-        log.info(f'{artist.get("artistId")} - {artist.get("artistName")} ({artist.get("artistLinkUrl")})')
+        log.info(f'{artist.get("artistId")} - '
+                 f'{artist.get("artistName")} '
+                 f'({artist.get("artistLinkUrl")})')
