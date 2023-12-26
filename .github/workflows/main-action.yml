@@ -36,7 +36,7 @@ jobs:
           python3 -m virtualenv venv
           source venv/bin/activate
           pip3 install -U -r requirements.txt
-          make run
+          python3 -m music 
           deactivate
       - name: Setup Pages
         uses: actions/configure-pages@v2
