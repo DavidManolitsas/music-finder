@@ -39,7 +39,7 @@ run:
 	@echo "|_|  |_|\__ _|___/_|\___| |_|   |_|_| |_|\__ _|\___|_|   "
 	@echo "Created by David Manolitsas "
 	@echo
-	python3 -m music --days $(DAYS)
+	python3 -m music
 
 open:
 	open app/index.html
