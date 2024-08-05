@@ -1,4 +1,4 @@
-black             ~= 23.3
+black             ~= 24.8
 flake8            ~= 6.0
 isort             ~= 5.12
 Jinja2            ~= 3.1
