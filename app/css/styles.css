@@ -19,6 +19,7 @@ header {
     background-color: #f2f2f6;
     margin: 0 0 32px 0;
     text-align: center;
+    padding: 0 0 8px 0;
 }
 
 a {
@@ -53,14 +54,33 @@ body {
 
 #search-bar {
     display: block;
-    margin: 32px auto;
-    width: 30%;
+    margin: 16px auto;
+    width: 40%;
     padding: 8px;
-    background-color: #f2f2f6;
+    background-color: white;
     border: 0;
     border-radius: 8px;
     text-align: center;
     font-size: 16px;
+}
+
+.record-label-grid {
+    display: grid;
+    margin: 32px 0 16px 0;
+    gap: 48px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.record-label {
+    padding: 4px;
+    width: 100%;
+    text-align: center;
+    color:#333333;
+}
+
+.record-label:hover {
+    color: #fa233b;
+    font-weight: normal;
 }
 
 .song-grid {
@@ -175,6 +195,11 @@ footer p {
 
 @media screen and (max-width: 700px) {
     .song-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .record-label-grid {
+        gap: 4px;
         grid-template-columns: 1fr;
     }
 

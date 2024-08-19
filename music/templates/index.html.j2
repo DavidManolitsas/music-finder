@@ -17,15 +17,34 @@
 <body>
     <main>
         <header>
-        <div class="content-wrap">
-           <a href="./index.html"><h1>Music Finder</h1></a>
-           <div class="info">
-               <p>{{ song_count }} songs released since {{ date }}</p>
-           </div>
-        </div>
+            <div class="content-wrap">
+                <a href="./index.html"><h1>Music Finder</h1></a>
+                <div class="record-label-grid">
+                    <a href="https://anjunabeats.com/us">
+                        <div class="record-label">
+                            Anjunabeats
+                        </div>
+                    </a>
+                    <a href="https://anjunadeep.com/us">
+                        <div class="record-label">
+                            Anjunadeep
+                        </div>
+                    </a>
+                    <a href="https://spinninrecords.com">
+                        <div class="record-label">
+                            Spinnin' Records
+                        </div>
+                    </a>
+                    <a href="https://www.armadamusic.com">
+                        <div class="record-label">
+                            Armada Music
+                        </div>
+                    </a>
+                </div>
+                <input id="search-bar" type="text" placeholder="Search by Artist" enterkeyhint="search">
+            </div>
         </header>
         <div class="content-wrap">
-            <input id="search-bar" type="text" placeholder="Search by Artist" enterkeyhint="search">
             <div id="search-results">
             </div>
             <div class="song-grid" id="song-grid">

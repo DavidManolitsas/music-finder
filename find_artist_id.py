@@ -30,6 +30,6 @@ response = send_http_request(url=f'https://itunes.apple.com/search'
 # iterate through artists
 if response:
     for artist in response.json().get("results"):
-        log.info(f'{artist.get("artistId")} - '
-                 f'{artist.get("artistName")} '
+        log.info(f'- id: {artist.get("artistId")} name: '
+                 f'"{artist.get("artistName")}" '
                  f'({artist.get("artistLinkUrl")})')
