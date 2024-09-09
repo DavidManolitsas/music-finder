@@ -82,7 +82,7 @@ def get_new_release_artists(start_date: datetime, artists: [dict]):
         )
 
         if new_releases:
-            log.info(f"new music found from {artist['name']}")
+            log.info(f"{len(new_releases)} new releases from {artist['name']}")
             # increment new song count
             song_count += len(new_releases)
             artist_link = artist_details.get("artistLinkUrl")
