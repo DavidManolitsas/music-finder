@@ -1,6 +1,5 @@
 #!/usr/bin/env make
 SRCS := $(wildcard *.py **/*.py)
-DAYS ?= 31
 
 help:
 	@echo

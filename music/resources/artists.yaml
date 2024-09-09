@@ -1,59 +1,63 @@
 artists:
   - id: 20318188
     name: "Above & Beyond"
-  - id: 739932137
-    name: "Kasbo"
-  - id: 1076264033
-    name: "Yoste"
-  - id: 634763116
-    name: "Lane 8"
-  - id: 739033803
-    name: "ODESZA"
-  - id: 1084146246
-    name: "Emmit Fenn"
-  - id: 940109730
-    name: "Shallou"
-  - id: 261545033
-    name: "ZHU"
-  - id: 1019286463
-    name: "Lastlings"
-  - id: 799587823
-    name: "RÜFÜS DU SOL"
+  - id: 291731793
+    name: "Andrew Belle"
+  - id: 794108530
+    name: "Ben Böhmer"
+  - id: 566867492
+    name: "CHRVCHES"
   - id: 736829657
     name: "Elderbrook"
-  - id: 951123601
-    name: "Oh Wonder"
-  - id: 1258279972
-    name: "Joji"
+  - id: 1029980312
+    name: "EMBRZ"
+  - id: 1084146246
+    name: "Emmit Fenn"
+  - id: 4275634
+    name: "Flume"
+  - id: 1455262408
+    name: "Fred again .."
+  - id: 305693322
+    name: "Grum"
+  - id: 471260289
+    name: "Harry Styles"
+  - id: 342260741
+    name: "Hozier"
   - id: 906366067
     name: "HONNE"
   - id: 896670451
     name: "Jai Wolf"
-  - id: 291731793
-    name: "Andrew Belle"
-  - id: 1340513121
-    name: "bülow"
-  - id: 305693322
-    name: "grum"
-  - id: 1029980312
-    name: "EMBRZ"
-  - id: 763635303
-    name: "Novo Amor"
-  - id: 442122051
-    name: "Frank Ocean"
-  - id: 4275634
-    name: "Flume"
-  - id: 471260289
-    name: "Harry Styles"
+  - id: 1258279972
+    name: "Joji"
+  - id: 739932137
+    name: "Kasbo"
+  - id: 634763116
+    name: "Lane 8"
+  - id: 1019286463
+    name: "Lastlings"
   - id: 439754171
     name: "Maribou State"
-  - id: 342260741
-    name: "Hozier"
-  - id: 566867492
-    name: "CHRVCHES"
+  - id: 763635303
+    name: "Novo Amor"
+  - id: 739033803
+    name: "ODESZA"
+  - id: 951123601
+    name: "Oh Wonder"
+  - id: 1433805050
+    name: "P.O.S."
+  - id: 1001881694
+    name: "Qrion"
+  - id: 799587823
+    name: "RÜFÜS DU SOL"
   - id: 1274804750
     name: "Spacey Jane"
-  - id: 1455262408
-    name: "Fred again .."
+  - id: 185074489
+    name: "Spencer Brown"
   - id: 326646632
     name: "Sleeping At Last"
+  - id: 1076264033
+    name: "Yoste"
+  - id: 548731844
+    name: "Yotto"
+  - id: 261545033
+    name: "ZHU"
