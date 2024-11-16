@@ -65,8 +65,15 @@ body {
     margin: 8px 0 0 0;
 }
 
+.record-label-wrap h2 {
+    max-width: 90%;
+    margin: 0 auto;
+    padding-bottom: 32px;
+}
+
 .record-labels {
     display: grid;
+    max-width: 100%;
     justify-items: left;
     column-gap: 16px;
     grid-auto-flow: column;

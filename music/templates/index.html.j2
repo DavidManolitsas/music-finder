@@ -19,7 +19,7 @@
     <header>
         <h1>Music Finder</h1>
     </header>
-    <div class="content-wrap">
+    <div class="record-label-wrap">
         <h2>Record Labels</h2>
         <div class="record-labels no-scrollbar">
             <div class="record-label">
@@ -35,10 +35,13 @@
                 <div class="record-label-title"> Armada Music</div>
             </div>
             <div class="record-label">
-                <a href="https://spinninrecords.com/"><img src="assets/spinnin-records.jpg" class="record-label-img"></a>
+                <a href="https://spinninrecords.com/"><img src="assets/spinnin-records.jpg"
+                                                           class="record-label-img"></a>
                 <div class="record-label-title"> Spinnin' Records</div>
             </div>
         </div>
+    </div>
+    <div class="content-wrap">
         <h2>Recent Releases</h2>
         <div class="song-grid" id="song-grid">
             {% for artist in artists %}
