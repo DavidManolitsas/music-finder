@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from music.api.itunes_api import get_music_by_artist
+from music.api.itunes_api import get_music_by_artist_id
 from music.search.music_filter import (
     filter_music_duplicates,
     get_all_new_releases,
@@ -48,9 +48,7 @@ def generate_html(
 
     # Build HTML file from Jinja2 template
     with open(output, "w", encoding="UTF-8") as file:
-        file.write(
-            template.render(artists=artists)
-        )
+        file.write(template.render(artists=artists))
 
 
 def get_new_release_artists(start_date: datetime, artists: [dict]):
@@ -66,7 +64,7 @@ def get_new_release_artists(start_date: datetime, artists: [dict]):
     new_release_artists = []
 
     for artist in artists:
-        music = get_music_by_artist(artist=artist)
+        music = get_music_by_artist_id(artist_id=artist.get("id"))
 
         if not music:
             log.info(f'no music found for {artist["id"]}: {artist["name"]}')

@@ -3,11 +3,12 @@ Script to find an artists iTunes ID from their artist name.
 """
 import argparse
 
+from music.api.http_service import HttpService
 from music.util.log_util import get_logger
-from music.api.itunes_api import send_http_request
 
 
 log = get_logger()
+service = HttpService(base_url="https://itunes.apple.com")
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument("-a", "--artist", type=str, required=True)
@@ -22,10 +23,9 @@ search_limit = arguments.limit
 # get itunes api response
 log.info(f'search results for term = {artist_name}')
 
-response = send_http_request(url=f'https://itunes.apple.com/search'
-                                 f'?term={artist_name.replace(" ", "+")}'
-                                 f'&limit={search_limit}'
-                                 f'&entity=musicArtist')
+response = service.get(path=f'/search?term={artist_name.replace(" ", "+")}'
+                            f'&limit={search_limit}'
+                            f'&entity=musicArtist')
 
 # iterate through artists
 if response:

@@ -17,49 +17,34 @@
 <body>
 <main>
     <header>
-        <div class="content-wrap">
-            <ul>
-                <li><a href="./index.html"><div class="main-nav">Music Finder</div></a></li>
-                <li>
-                    <a href="https://anjunabeats.com/us">
-                        <div class="sub-nav">
-                            Anjunabeats
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://anjunadeep.com/us">
-                        <div class="sub-nav">
-                            Anjunadeep
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.armadamusic.com">
-                        <div class="sub-nav">
-                            Armada Music
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://spinninrecords.com">
-                        <div class="sub-nav">
-                            Spinnin' Records
-                        </div>
-                    </a>
-                </li>
-                <!--                    <li><input id="search-bar" type="text" placeholder="Search by Artist" enterkeyhint="search"></li>-->
-            </ul>
-        </div>
+        <h1>Music Finder</h1>
     </header>
     <div class="content-wrap">
-        <div id="search-results">
+        <h2>Record Labels</h2>
+        <div class="record-labels no-scrollbar">
+            <div class="record-label">
+                <a href="https://anjunabeats.com/us"><img src="assets/anjunabeats.jpg" class="record-label-img"></a>
+                <div class="record-label-title"> Anjunabeats</div>
+            </div>
+            <div class="record-label">
+                <a href="https://anjunadeep.com/us"><img src="assets/anjunadeep.jpg" class="record-label-img"></a>
+                <div class="record-label-title"> Anjunadeep</div>
+            </div>
+            <div class="record-label">
+                <a href="https://www.armadamusic.com/"><img src="assets/armada.jpg" class="record-label-img"></a>
+                <div class="record-label-title"> Armada Music</div>
+            </div>
+            <div class="record-label">
+                <a href="https://spinninrecords.com/"><img src="assets/spinnin-records.jpg" class="record-label-img"></a>
+                <div class="record-label-title"> Spinnin' Records</div>
+            </div>
         </div>
+        <h2>Recent Releases</h2>
         <div class="song-grid" id="song-grid">
             {% for artist in artists %}
                 {% for album in artist.new_releases %}
                     <div class="song-card">
-                        <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="300" height="300" alt="{{ album.song }} cover image"></a>
+                        <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="325" height="325" alt="{{ album.song }} cover image"></a>
                         <div class="card-container">
                             <div class="song-info">
                                 <p class="song-title">{{ album.song }}</p>
