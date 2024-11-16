@@ -1,4 +1,4 @@
-name: Run and Deploy Music Finder
+name: Deploy
 
 on:
   push:
@@ -44,6 +44,6 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: './app'
-      - name: Deploy to to GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
