@@ -7,13 +7,10 @@ html {
     box-sizing: inherit;
 }
 
-header {
-    max-width: 90%;
-    margin: 0 auto;
-}
+
 
 h1 {
-    font-size: 48px;
+    font-size: 24px;
     line-height: 1;
     padding: 30px 0 0 0;
     margin: 0 0 32px 0;
@@ -21,10 +18,10 @@ h1 {
 }
 
 h2 {
-    font-size: 32px;
+    font-size: 18px;
     line-height: 1;
-    padding: 30px 0 0 0;
-    margin: 0 0 32px 0;
+    padding: 16px 0 0 0;
+    margin: 0;
     color: #333333;
 }
 
@@ -47,13 +44,17 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 0;
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
 .content-wrap {
     max-width: 90%;
     margin: 0 auto;
+}
+
+.sub-text {
+    color: #8a8a8d;
 }
 
 .info {
@@ -65,51 +66,55 @@ body {
     margin: 8px 0 0 0;
 }
 
-.record-label-wrap h2 {
-    max-width: 90%;
+/* Header */
+header {
+    /*max-width: 90%;*/
+    padding: 0 64px 0 64px;
     margin: 0 auto;
-    padding-bottom: 32px;
-}
-
-.record-labels {
-    display: grid;
-    max-width: 100%;
-    justify-items: left;
-    column-gap: 16px;
-    grid-auto-flow: column;
-    overflow-x: scroll;
-    scroll-snap-type: x proximity;
-}
-
-.record-labels:before,
-.record-labels:after {
-    content: '';
-    width: 10px;
-}
-
-.no-scrollbar {
-    scrollbar-width: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.record-label-img {
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
     background-color: #333333;
 }
 
-.record-label-title {
-    padding: 8px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+header h1 {
+    color: #ffffff;
 }
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+header #record-labels {
+    display: none;
+}
+
+/* Style navigation menu links */
+header a {
+    color: #ffffff;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    opacity: 50%;
+}
+
+/* Style the hamburger menu */
+header a.icon {
+    color: #ffffff;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+header a:hover {
+    background-color: #8a8a8d;
+    color: black;
+}
+
+/* Style the active link (or home/logo) */
+/*.active {*/
+/*    background-color: #04AA6D;*/
+/*    color: white;*/
+/*}*/
 
 
 .song-grid {
@@ -123,7 +128,7 @@ body {
 .song-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 16px;
-    width: 325px;
+    width: 260px;
     background-color: #ffffff;
 }
 
@@ -139,7 +144,7 @@ body {
     align-items: center;
     grid-auto-columns: 3fr 1fr;
     margin: 0;
-    padding: 8px;
+    padding: 4px;
 }
 
 .song-title {

@@ -239,4 +239,13 @@ input.addEventListener("keyup", async function searchEvent(event) {
   }
 });
 
+function recordLabelMenu() {
+  var x = document.getElementById("record-labels");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+
 

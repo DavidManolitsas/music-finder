@@ -21,7 +21,7 @@
     </header>
     <div class="record-label-wrap">
         <h2>Record Labels</h2>
-        <div class="record-labels no-scrollbar">
+        <div class="record-labels">
             <div class="record-label">
                 <a href="https://anjunabeats.com/us"><img src="assets/record-labels/anjunabeats.jpg" class="record-label-img"></a>
                 <div class="record-label-title">Anjunabeats</div>
@@ -67,11 +67,12 @@
     </div>
     <div class="content-wrap">
         <h2>Recent Releases</h2>
+        <p class="sub-text">New songs from {{ artists|length }} artists</p>
         <div class="song-grid" id="song-grid">
             {% for artist in artists %}
                 {% for album in artist.new_releases %}
                     <div class="song-card">
-                        <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="325" height="325" alt="{{ album.song }} cover image"></a>
+                        <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="260" height="260" alt="{{ album.song }} cover image"></a>
                         <div class="card-container">
                             <div class="song-info">
                                 <p class="song-title">{{ album.song }}</p>
