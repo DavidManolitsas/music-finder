@@ -239,13 +239,12 @@ input.addEventListener("keyup", async function searchEvent(event) {
   }
 });
 
-function recordLabelMenu() {
-  var x = document.getElementById("record-labels");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  } else {
-    x.style.display = "block";
-  }
+// navigation menu for record labels
+function openNav() {
+  document.getElementById("record-label-nav").style.width = "100%";
 }
 
-
+// Close when someone clicks on the "x" symbol inside the overlay
+function closeNav() {
+  document.getElementById("record-label-nav").style.width = "0%";
+}

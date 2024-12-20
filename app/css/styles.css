@@ -1,3 +1,4 @@
+/* General */
 html {
     box-sizing: border-box;
 }
@@ -6,8 +7,6 @@ html {
 *:after {
     box-sizing: inherit;
 }
-
-
 
 h1 {
     font-size: 24px;
@@ -66,57 +65,85 @@ body {
     margin: 8px 0 0 0;
 }
 
-/* Header */
+/* Header and Menu */
 header {
-    /*max-width: 90%;*/
-    padding: 0 64px 0 64px;
+    width: 90%;
     margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-    background-color: #333333;
 }
 
-header h1 {
-    color: #ffffff;
-}
-
-/* Hide the links inside the navigation menu (except for logo/home) */
-header #record-labels {
-    display: none;
-}
-
-/* Style navigation menu links */
 header a {
-    color: #ffffff;
+    color: white;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     display: block;
-    opacity: 50%;
 }
 
-/* Style the hamburger menu */
 header a.icon {
-    color: #ffffff;
+    color: #333333;
+    margin: 16px;
+    scale: 150%;
     display: block;
     position: absolute;
     right: 0;
     top: 0;
 }
 
-/* Add a grey background color on mouse-over */
-header a:hover {
-    background-color: #8a8a8d;
-    color: black;
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s;
 }
 
-/* Style the active link (or home/logo) */
-/*.active {*/
-/*    background-color: #04AA6D;*/
-/*    color: white;*/
-/*}*/
+.overlay::-webkit-scrollbar {
+    display: none; /* Disables scroll bars while keeping functionality */
+}
 
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+}
 
+/* The navigation links inside the overlay */
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+    margin: 0 16px 8px 16px;
+    padding: 0;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    /*top: 20px;*/
+    /*right: 45px;*/
+    font-size: 60px;
+}
+
+/* Song Grid and Music Cards*/
 .song-grid {
     display: grid;
     justify-items: center;
@@ -201,7 +228,6 @@ footer p {
 }
 
 /* responsive design */
-
 @media screen and (max-width: 1750px) {
     .song-grid {
         grid-template-columns: 1fr 1fr 1fr 1fr;
