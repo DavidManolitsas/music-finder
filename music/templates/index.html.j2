@@ -18,60 +18,53 @@
 <main>
     <header>
         <h1>Music Finder</h1>
-    </header>
-    <div class="record-label-wrap">
-        <h2>Record Labels</h2>
-        <div class="record-labels no-scrollbar">
-            <div class="record-label">
-                <a href="https://anjunabeats.com/us"><img src="assets/record-labels/anjunabeats.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Anjunabeats</div>
-            </div>
-            <div class="record-label">
-                <a href="https://anjunadeep.com/us"><img src="assets/record-labels/anjunadeep.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Anjunadeep</div>
-            </div>
-            <div class="record-label">
-                <a href="https://www.armadamusic.com/"><img src="assets/record-labels/armada.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Armada Music</div>
-            </div>
-            <div class="record-label">
-                <a href="https://counterrecords.com/home"><img src="assets/record-labels/counter-records.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Counter Records</div>
-            </div>
-            <div class="record-label">
-                <a href="https://www.foreignfamilycollective.com"><img src="assets/record-labels/family.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Foreign Family Collective</div>
-            </div>
-            <div class="record-label">
-                <a href="https://music.apple.com/us/label/liberation-records/1548336289"><img src="assets/record-labels/liberation.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Liberation Records</div>
-            </div>
-            <div class="record-label">
-                <a href="https://ninjatune.net/releases"><img src="assets/record-labels/ninja-tune.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Ninja Tune</div>
-            </div>
-            <div class="record-label">
-                <a href="https://roseavenuerecs.com"><img src="assets/record-labels/rose-avenue.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Rose Avenue Records</div>
-            </div>
-            <div class="record-label">
-                <a href="https://spinninrecords.com/"><img src="assets/record-labels/spinnin-records.jpg"
-                                                           class="record-label-img"></a>
-                <div class="record-label-title">Spinnin' Records</div>
-            </div>
-            <div class="record-label">
-                <a href="https://spintwist-records.com"><img src="assets/record-labels/spin-twist-records.jpg" class="record-label-img"></a>
-                <div class="record-label-title">Spin Twist Records</div>
+        <div id=record-label-nav class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div id="record-labels" class="overlay-content">
+                <div class="record-label">
+                    <a href="https://anjunabeats.com/us">Anjunabeats</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://anjunadeep.com/us">Anjunadeep</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://www.armadamusic.com/">Armada Music</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://counterrecords.com/home">Counter Records</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://www.foreignfamilycollective.com">Foreign Family Collective</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://music.apple.com/us/label/liberation-records/1548336289">Liberation Records</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://ninjatune.net/releases">Ninja Tune</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://roseavenuerecs.com">Rose Avenue Records</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://spinninrecords.com/">Spinnin' Records</a>
+                </div>
+                <div class="record-label">
+                    <a href="https://spintwist-records.com">Spin Twist Records</a>
+                </div>
             </div>
         </div>
-    </div>
+        <a href="javascript:void(0);" class="icon" onclick="openNav()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </header>
     <div class="content-wrap">
         <h2>Recent Releases</h2>
+        <p class="sub-text">New songs from {{ artists|length }} artists</p>
         <div class="song-grid" id="song-grid">
             {% for artist in artists %}
                 {% for album in artist.new_releases %}
                     <div class="song-card">
-                        <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="325" height="325" alt="{{ album.song }} cover image"></a>
+                        <a href="{{ album.song_url }}"><img class="song-image" src="{{ album.cover }}" width="260" height="260" alt="{{ album.song }} cover image"></a>
                         <div class="card-container">
                             <div class="song-info">
                                 <p class="song-title">{{ album.song }}</p>

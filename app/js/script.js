@@ -239,4 +239,12 @@ input.addEventListener("keyup", async function searchEvent(event) {
   }
 });
 
+// navigation menu for record labels
+function openNav() {
+  document.getElementById("record-label-nav").style.width = "100%";
+}
 
+// Close when someone clicks on the "x" symbol inside the overlay
+function closeNav() {
+  document.getElementById("record-label-nav").style.width = "0%";
+}
