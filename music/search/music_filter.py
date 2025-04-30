@@ -40,7 +40,10 @@ def map_itunes_music_to_new_release(music: dict) -> dict:
         song_name: str = music.get("collectionName")
         if "trackCount" in music:
             if music.get("trackCount") > 1:
-                track_count = music.get("trackCount")
+                track_count = f'{music.get("trackCount")} Songs'
+
+    if not track_count:
+        track_count = "Single"
 
     return {
         "song": song_name.replace(" - Single", "")
