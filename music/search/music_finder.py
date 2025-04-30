@@ -34,6 +34,7 @@ def generate_html(
     template_name: str,
     output: str,
     artists: [],
+    start_date: str
 ):
     """
     Apply new release config to Jinja2 template to generate the final
@@ -42,13 +43,14 @@ def generate_html(
     :param template_name: Jinja template file name
     :param output: output directory and file path
     :param artists: list of new artists
+    :param start_date: start date of the search query
     :return: None
     """
     template = get_template(file_name=template_name)
 
     # Build HTML file from Jinja2 template
     with open(output, "w", encoding="UTF-8") as file:
-        file.write(template.render(artists=artists))
+        file.write(template.render(artists=artists, start_date=start_date))
 
 
 def get_new_release_artists(start_date: datetime, artists: [dict]):
@@ -108,4 +110,4 @@ def find_new_music(days: int, artists: [dict]):
     start_date = get_start_date(days_ago=days)
     new_release_artists = get_new_release_artists(start_date, artists)
 
-    generate_html("index.html.j2", "app/index.html", new_release_artists)
+    generate_html("index.html.j2", "app/index.html", new_release_artists, start_date.strftime("%d-%m-%Y"))

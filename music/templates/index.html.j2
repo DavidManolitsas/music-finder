@@ -59,7 +59,7 @@
     </header>
     <div class="content-wrap">
         <h2>Recent Releases</h2>
-        <p class="sub-text">New songs from {{ artists|length }} artists</p>
+        <p class="sub-text">New songs from {{ artists|length }} artists since {{ start_date }}</p>
         <div class="song-grid" id="song-grid">
             {% for artist in artists %}
                 {% for album in artist.new_releases %}
@@ -75,7 +75,7 @@
                                 {% endif %}
                             </div>
                             {% if album.track_count %}
-                                <p class="track-count">{{ album.track_count }} Songs</p>
+                                <p class="track-count">{{ album.track_count }}</p>
                             {% endif %}
                             {% if album.preview %}
                                 <div class="audio-controls">
