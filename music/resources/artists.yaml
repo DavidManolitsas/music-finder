@@ -3,6 +3,8 @@ artists:
     name: "Above & Beyond"
   - id: 291731793
     name: "Andrew Belle"
+  - id: 1505813449
+    name: "Anyma"
   - id: 794108530
     name: "Ben Böhmer"
   - id: 566867492
@@ -55,6 +57,8 @@ artists:
     name: "Spencer Brown"
   - id: 326646632
     name: "Sleeping At Last"
+  - id: 580400483
+    name: "Tinlicker"
   - id: 1076264033
     name: "Yoste"
   - id: 548731844
