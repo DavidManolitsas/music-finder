@@ -32,4 +32,4 @@ if response:
     for artist in response.json().get("results"):
         log.info(f'- id: {artist.get("artistId")} name: '
                  f'"{artist.get("artistName")}" '
-                 f'({artist.get("artistLinkUrl")})')
+                 f'{artist.get("artistLinkUrl")}')
